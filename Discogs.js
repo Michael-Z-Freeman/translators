@@ -17,7 +17,7 @@ HISTORY
 
 This translator was something I've been circling arund for 3 years. I started a BA(Hons) in Creative Music Technology at Falmouth University.
 I became frustrated with the lack of citation tools for music releases and audio recordings in general. Zotero does detect the Discogs page as an
-audio recording but does not fill in the correct details. Other citation tools out there fail to have searches for music releases and seem to have 
+audio recording but does not fill in the correct details. Other citation tools out there fail to have searches for music releases and seem to have
 no idea that vinyl records can in fact be cited and referenced. All this when as a DJ I am researching releases and writing assessments and dissertations !
 So I hope this translator can improve the situation.
 
@@ -29,6 +29,30 @@ list the record label.
 INFO
 
 Some comments in the code below are based on page https://www.discogs.com/release/126504-Micro-Vicious-Vic-Electric-Impact-The-Mixes
+*/
+
+
+/*
+	***** BEGIN LICENSE BLOCK *****
+
+	Copyright © 2025 Michael Z Freeman
+
+	This file is part of Zotero.
+
+	Zotero is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Zotero is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with Zotero. If not, see <http://www.gnu.org/licenses/>.
+
+	***** END LICENSE BLOCK *****
 */
 
 function detectWeb(doc, url) {
@@ -58,7 +82,7 @@ function doWeb(doc, url) {
 	}
 
 	if (jsonLd.releaseOf && jsonLd.releaseOf.byArtist) {
-		jsonLd.releaseOf.byArtist.forEach(function(artist) {
+		jsonLd.releaseOf.byArtist.forEach(function (artist) {
 			item.creators.push({
 				lastName: artist.name, // e.g., "DJ Micro", "Vicious Vic"
 				creatorType: "performer"
@@ -81,7 +105,8 @@ function doWeb(doc, url) {
 	if (jsonLd.genre) {
 		if (Array.isArray(jsonLd.genre)) {
 			jsonLd.genre.forEach(genre => item.tags.push(genre));
-		} else {
+		}
+		else {
 			item.tags.push(jsonLd.genre); // e.g., "Electronic"
 		}
 	}
